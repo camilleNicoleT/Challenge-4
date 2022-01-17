@@ -32,6 +32,13 @@ button:hover {
 h1 {
     font-weight: bold;
 }
+.page-title {
+    text-align: center;
+}
+#startbtn{
+    text-align: center;
+    justify-content: center;
+}
 
 span {
     font-size: 30;
@@ -65,6 +72,11 @@ span {
     margin: 10px;
 }
 
+#highScore {
+    justify-content: right;
+    justify-items: right;
+    text-align: right;
+}
 #highScorebtn {
     flex: 100%;
     flex-wrap: wrap;

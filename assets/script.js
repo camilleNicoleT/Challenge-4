@@ -72,6 +72,7 @@ var timeCountdown = function () {
       clearInterval(timeInterval);
       timeLeftEl.textContent = 0;
       window.alert("You ran out of time")
+      questionsSectionEl.remove();
     }
   }, 1000);
      
@@ -171,6 +172,7 @@ var stopGame = function() {
   playerScore.append("Your score is: " + score);
   questionsSectionEl.remove();
   resultEl.remove();
+  savedScore();
 }
 
 nextButtonEl.addEventListener("click", function() {
@@ -182,32 +184,33 @@ nextButtonEl.addEventListener("click", function() {
 }  
 });
 
-// var newScore = function() {
-//   userName = window.prompt.value ("To save your score enter your name.");
+var newScore = function() {
+  userName = window.prompt ("To save your score enter your name.");
 
 //   var  = playerObj {
 //   name: userName,
 //   playersScore: score,
 // }
-// }
+}
 
 var savedScore = function () {  
 localStorage.getItem("highScore");
-  if(score !== 0){
+  if(score > 0){
+    console.log("wow")
     if(score > JSON.parse(localStorage.getItem("highScore"))) {
     localStorage.setItem(JSON.stringify(score), "highScore");
-    // newScore();
+    highScore = score;
+    newScore();
+  } else{
+    highScore = (JSON.parse(localStorage.getItem("highScore")));
   }
-  }
-  else{
-    localStorage.setItem(JSON.parse(localStorage.getItem("highScore")));
-  }
+}
 };
 
 highScoreButtonEl.addEventListener("click", function() {
   localStorage.getItem("highScore");
   // console.log("highScore", JSON.stringify(score));
-  highScoreEl.append(("highScore", JSON.stringify(score))+ " is the current high score");
+  highScoreEl.append(("highScore", JSON.stringify(highScore))+ " is the current high score");
 });
 
 
