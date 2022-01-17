@@ -71,7 +71,7 @@ var timeCountdown = function () {
     if (time <= 0) {
       clearInterval(timeInterval);
       timeLeftEl.textContent = 0;
-      window.alert("You ran out of time!")
+      window.alert("You ran out of time")
     }
   }, 1000);
      
@@ -193,21 +193,21 @@ nextButtonEl.addEventListener("click", function() {
 
 var savedScore = function () {  
 localStorage.getItem("highScore");
-
   if(score !== 0){
     if(score > JSON.parse(localStorage.getItem("highScore"))) {
-    localStorage.setItem("highScore", JSON.stringify(score));
-    newScore();
+    localStorage.setItem(JSON.stringify(score), "highScore");
+    // newScore();
   }
   }
   else{
-      window.alert("The High Score is " + JSON.parse(localStorage.getItem("highScore")));
+    localStorage.setItem(JSON.parse(localStorage.getItem("highScore")));
   }
 };
 
 highScoreButtonEl.addEventListener("click", function() {
   localStorage.getItem("highScore");
-  highScoreEl.append(JSON.parse(localStorage.getItem("highScore"))+ " is the current high score") ;
+  // console.log("highScore", JSON.stringify(score));
+  highScoreEl.append(("highScore", JSON.stringify(score))+ " is the current high score");
 });
 
 
