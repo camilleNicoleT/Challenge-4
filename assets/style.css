@@ -57,7 +57,7 @@ span {
     font-weight: bold;
     color:blueviolet
 }
-#highScore {
+#bottomButtons {
     width: 100%;
     justify-content: space-between;
     margin: 10px;
@@ -81,3 +81,4 @@ span {
         margin-left: auto;
         width: 40%
     }
+}

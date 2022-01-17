@@ -13,7 +13,7 @@ var score = 0;
 var highScore = 0;
 var highScoreButtonEl= document.querySelector("#highScorebtn");
 var highScoreEl = document.querySelector("#highScore");
-
+var playerScorEl = document.querySelector("#playerScore");
 
 
 var questions = [
@@ -70,8 +70,9 @@ var timeCountdown = function () {
     time--;
     if (time <= 0) {
       clearInterval(timeInterval);
-      alert("Quiz Over");
-  }
+      timeLeftEl.textContent = 0;
+      window.alert("You ran out of time!")
+    }
   }, 1000);
      
 }
@@ -88,7 +89,6 @@ function startQuiz() {
 
   displayQuestion(questionNumber);
 };
-
 
 
 var displayQuestion = function (questionIndex) {
@@ -162,44 +162,52 @@ var displayQuestion = function (questionIndex) {
             timeReduced();
         };
       });
+    
     }
 }
 
-
+var stopGame = function() {
+  window.alert("Quiz is over.");
+  playerScore.append("Your score is: " + score);
+  questionsSectionEl.remove();
+  resultEl.remove();
+}
 
 nextButtonEl.addEventListener("click", function() {
   questionNumber++;
   if (questionNumber < 4) {
       displayQuestion(questionNumber);
  } else {
-  savedScore(); 
+  stopGame(); 
 }  
 });
 
+// var newScore = function() {
+//   userName = window.prompt.value ("To save your score enter your name.");
 
-// var userName = prompt.value
-
-//   var playerObj = {
-//   name: userName
-//   newScore: score
+//   var  = playerObj {
+//   name: userName,
+//   playersScore: score,
+// }
+// }
 
 var savedScore = function () {  
 localStorage.getItem("highScore");
 
-if(score !== 0){
-  if(score > parseInt(localStorage.getItem("highScore"))) {
-   localStorage.setItem("highScore", JSON.stringify (score));
- }
-}
-else{
-    localStorage.setItem("highScore", JSON.stringify (score));
-}
-
+  if(score !== 0){
+    if(score > JSON.parse(localStorage.getItem("highScore"))) {
+    localStorage.setItem("highScore", JSON.stringify(score));
+    newScore();
+  }
+  }
+  else{
+      window.alert("The High Score is " + JSON.parse(localStorage.getItem("highScore")));
+  }
 };
 
 highScoreButtonEl.addEventListener("click", function() {
   localStorage.getItem("highScore");
-  console.log(highScore)
+  highScoreEl.append(JSON.parse(localStorage.getItem("highScore"))+ " is the current high score") ;
 });
 
 
