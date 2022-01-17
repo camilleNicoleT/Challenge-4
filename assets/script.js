@@ -3,15 +3,16 @@ var startSectionEl = document.querySelector("#start");
 var startButtonEl = document.querySelector("#startbtn");
 
 var timeLeftEl = document.querySelector("#timer");
-var time = 60;
+var time = 10;
 var questionsSectionEl = document.querySelector("#questions-section");
 var questionNumber = 0;
 var nextButtonEl = document.querySelector("#next");
 var resultEl = document.querySelector("#result");
 var playerObj = {};
 var score = 0;
-var highScore;
-var highscoreEl= document.querySelector("#highScore");
+var highScore = 0;
+var highScoreButtonEl= document.querySelector("#highScorebtn");
+var highScoreEl = document.querySelector("#highScore");
 
 
 
@@ -67,11 +68,12 @@ var timeCountdown = function () {
   var timeInterval = setInterval(function () {
     timeLeftEl.textContent = time;
     time--;
-  }, 1000);
     if (time <= 0) {
-        console.log("Your Time Is Up");
-        clearInterval(timeCountdown);
-    } 
+      clearInterval(timeInterval);
+      alert("Quiz Over");
+  }
+  }, 1000);
+     
 }
 
 var timeReduced = function () {  
@@ -163,19 +165,16 @@ var displayQuestion = function (questionIndex) {
     }
 }
 
+
+
 nextButtonEl.addEventListener("click", function() {
   questionNumber++;
   if (questionNumber < 4) {
       displayQuestion(questionNumber);
  } else {
-  savedScore(); }
-  
+  savedScore(); 
+}  
 });
-
-// var savedScore = function (){
-//   localStorage.setItem(JSON.stringify("highScore", playerObj))
-// } 
-// savedScore(playerOBJ)
 
 
 // var userName = prompt.value
@@ -185,9 +184,7 @@ nextButtonEl.addEventListener("click", function() {
 //   newScore: score
 
 var savedScore = function () {  
-    console.log(score);
 localStorage.getItem("highScore");
-highScoreEl.textContent = score
 
 if(score !== 0){
   if(score > parseInt(localStorage.getItem("highScore"))) {
@@ -197,8 +194,13 @@ if(score !== 0){
 else{
     localStorage.setItem("highScore", JSON.stringify (score));
 }
-}
 
+};
+
+highScoreButtonEl.addEventListener("click", function() {
+  localStorage.getItem("highScore");
+  console.log(highScore)
+});
 
 
 startButtonEl.addEventListener("click", function() {

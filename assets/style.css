@@ -57,3 +57,27 @@ span {
     font-weight: bold;
     color:blueviolet
 }
+#highScore {
+    width: 100%;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+#highScorebtn {
+    flex: 100%;
+    flex-wrap: wrap;
+    width: 20%;
+    padding: 10px;
+    margin-left: 250px;
+}
+#next {
+    width: 40%;
+    justify-content: left;
+    padding: 10px;
+    
+}
+@media (max-width: 690px) {
+    #highScorebtn {
+        margin-left: auto;
+        width: 40%
+    }
