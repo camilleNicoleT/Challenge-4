@@ -3,7 +3,7 @@ var startSectionEl = document.querySelector("#start");
 var startButtonEl = document.querySelector("#startbtn");
 
 var timeLeftEl = document.querySelector("#timer");
-var time = 10;
+var time = 60;
 var questionsSectionEl = document.querySelector("#questions-section");
 var questionNumber = 0;
 var nextButtonEl = document.querySelector("#next");
@@ -56,10 +56,18 @@ var questions = [
   },
   {
     question: "From the given array which index is the letter 'b' on? ['a', 'b', 'c', 'd']",
-    option1: "0",
-    option2: "1",
-    option3: "3",
-    option4: "2",
+    option1: "  0  ",
+    option2: "  1  ",
+    option3: "  3  ",
+    option4: "  2  ",
+    correct: 2,
+  },
+  {
+    question: "How do we stop a for loop from repeating indefinitely?",
+    option1: "A loop will stop executing when the condition is true.",
+    option2: "A loop will stop executing when the condition is false.",
+    option3: "When we have iterated through half of the condition.",
+    option4: "We have to explicitly end the loop with the break keyword.",
     correct: 2,
   },
 ];
@@ -177,7 +185,7 @@ var stopGame = function() {
 
 nextButtonEl.addEventListener("click", function() {
   questionNumber++;
-  if (questionNumber < 4) {
+  if (questionNumber <= 6) {
       displayQuestion(questionNumber);
  } else {
   stopGame(); 
@@ -196,20 +204,17 @@ var newScore = function() {
 var savedScore = function () {  
 localStorage.getItem("highScore");
   if(score > 0){
-    console.log("wow")
     if(score > JSON.parse(localStorage.getItem("highScore"))) {
     localStorage.setItem(JSON.stringify(score), "highScore");
-    highScore = score;
-    newScore();
-  } else{
+   newScore();
+  } 
     highScore = (JSON.parse(localStorage.getItem("highScore")));
   }
-}
 };
 
 highScoreButtonEl.addEventListener("click", function() {
   localStorage.getItem("highScore");
-  // console.log("highScore", JSON.stringify(score));
+  console.log("highScore", JSON.stringify(highScore));
   highScoreEl.append(("highScore", JSON.stringify(highScore))+ " is the current high score");
 });
 
