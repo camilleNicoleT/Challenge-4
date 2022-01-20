@@ -187,36 +187,40 @@ nextButtonEl.addEventListener("click", function() {
   questionNumber++;
   resultEl.textContent = "";
   questionsSectionEl.textContent = "";
-  if (questionNumber <= 6) {
+  if (questionNumber <= 5) {
       displayQuestion(questionNumber);
-  } else {
+      
+ } else {
+  timeLeftEl.textContent = 0;
   stopGame(); 
 }  
 });
 
 var newScore = function() {
-  userName = window.prompt ("To save your score enter your name.");
+  userName = window.prompt.value ("To save your score enter your name.");
 
-//   var  = playerObj {
-//   name: userName,
-//   playersScore: score,
-// }
+  var userObj = {
+  name: userName,
+  playerScore: score,
+}
+userObj.localStorage.setItem("highScore")
 }
 
 var savedScore = function () {  
-JSON.parse(localStorage.getItem("highScore"));
-  if(score > 0){
-    if(score > JSON.parse(localStorage.getItem("highScore"))) {
-    localStorage.setItem(JSON.stringify(score), "highScore");
+  JSON.parse(localStorage.getItem("highScore"));
+// debugger
+  if(score > (JSON.parse(localStorage.getItem("highScore")))){
+    if(score > highScore) {
+    localStorage.setItem((JSON.stringify(highScore)), "highScore");
    newScore();
+  } 
   } else {
     highScore = JSON.parse(localStorage.getItem("highScore"));
   }
+  
 };
 
 highScoreButtonEl.addEventListener("click", function() {
- highScore = JSON.parse(localStorage.getItem("highScore"));
-  
   highScoreEl.append(highScore + " is the current high score");
 });
 
