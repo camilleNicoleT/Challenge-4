@@ -185,7 +185,8 @@ var stopGame = function() {
 
 nextButtonEl.addEventListener("click", function() {
   questionNumber++;
-  resultEl.textContent = ""
+  resultEl.textContent = "";
+  questionsSectionEl.textContent = "";
   if (questionNumber <= 6) {
       displayQuestion(questionNumber);
   } else {
