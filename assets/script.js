@@ -204,20 +204,20 @@ var newScore = function() {
 }
 
 var savedScore = function () {  
-localStorage.getItem("highScore");
+JSON.parse(localStorage.getItem("highScore"));
   if(score > 0){
     if(score > JSON.parse(localStorage.getItem("highScore"))) {
     localStorage.setItem(JSON.stringify(score), "highScore");
    newScore();
-  } 
-    highScore = (JSON.parse(localStorage.getItem("highScore")));
+  } else {
+    highScore = JSON.parse(localStorage.getItem("highScore"));
   }
 };
 
 highScoreButtonEl.addEventListener("click", function() {
-  localStorage.getItem("highScore");
-  console.log("highScore", JSON.stringify(highScore));
-  highScoreEl.append(("highScore", JSON.stringify(highScore))+ " is the current high score");
+ highScore = JSON.parse(localStorage.getItem("highScore"));
+  
+  highScoreEl.append(highScore + " is the current high score");
 });
 
 
